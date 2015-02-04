@@ -7,22 +7,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-
 public class MainActivity extends ActionBarActivity {
 
-    TextView lblWelcome;
+    TextView lblWelcome, lblSubtitulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lblWelcome=(TextView)findViewById(R.id.lblWelcome);
+        lblWelcome = (TextView) findViewById(R.id.lblWelcome);
+        lblSubtitulo = (TextView) findViewById(R.id.lblSubtitulo);
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/A.C.M.E. Secret Agent.ttf");
         lblWelcome.setTypeface(typeface);
+        lblSubtitulo.setTypeface(typeface);
+
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -1,11 +1,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    android:background="@color/red"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    tools:context=".MainActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,10 +18,10 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:src="@drawable/logo"
+            android:layout_gravity="right|center_vertical"
             android:layout_marginTop="10dp"
-            android:layout_gravity="right|center_vertical"/>
+            android:adjustViewBounds="true"
+            android:src="@drawable/logo" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,17 +33,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/welcome"
-                android:textSize="30sp"
-                android:textStyle="bold"
                 android:textColor="@color/white"
-                />
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/lblSubtitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Log into RedBooth"
-                android:textSize="30sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
         </LinearLayout>
     </FrameLayout>
@@ -54,14 +57,17 @@
             android:id="@+id/txtUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
             android:hint="@string/email"
-            android:layout_marginBottom="25dp"/>
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password"/>
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textColor="@color/white" />
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -73,47 +79,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/forgot"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white" />
 
-            </FrameLayout>
+        </FrameLayout>
 
-        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:textColor="@color/white"
+        android:layout_marginTop="15dp"
         android:background="@color/red_dark"
-        android:shadowColor="@null"
-        android:layout_marginTop="15dp"/>
+        android:text="@string/login"
+        android:textColor="@color/white" />
 
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp">
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/signin"
             android:layout_gravity="left|bottom"
             android:background="@null"
-            android:textColor="@color/white"
+            android:text="@string/signin"
             android:textAllCaps="false"
-            />
+            android:textColor="@color/white" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/promise"
             android:layout_gravity="right|bottom"
-            android:textColor="@color/white"
             android:background="@null"
-            android:textAllCaps="false"/>
+            android:text="@string/promise"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
     </FrameLayout>
 
