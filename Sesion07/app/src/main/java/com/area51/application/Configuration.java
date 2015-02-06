@@ -21,7 +21,7 @@ public class Configuration extends Application {
         super.onCreate();
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.iconLoader)
+                .showImageOnLoading(R.drawable.icon_loader)
                 .cacheInMemory(true).cacheOnDisk(true).considerExifParams(true)
                 .bitmapConfig(Bitmap.Config.RGB_565).build();
 

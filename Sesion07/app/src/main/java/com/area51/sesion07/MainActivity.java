@@ -4,16 +4,38 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.GridView;
+
+import com.area51.adapters.GrillaAdapter;
+import com.area51.models.Image;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    GrillaAdapter adapter;
+    ArrayList<Image> listaImagen;
+    GridView gvGrilla;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        gvGrilla = (GridView) findViewById(R.id.gvGrilla);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (listaImagen == null)
+            listaImagen = new ArrayList<Image>();
+        for (int i = 100; i < 200; i++) {
+            listaImagen.add(new Image(listaImagen.size(), "http://johannfjs.com/android/images/HDPackSuperiorWallpapers424_" + i + ".jpg"));
+        }
+        adapter = new GrillaAdapter(getApplicationContext(), R.layout.grid_item, listaImagen);
+        gvGrilla.setAdapter(adapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
