@@ -35,7 +35,6 @@ public class RegistroActivity extends ActionBarActivity {
         btnRegistro = (Button) findViewById(R.id.btnRegistro);
         btnListado = (Button) findViewById(R.id.btnListado);
 
-
     }
 
     @Override
@@ -72,6 +71,7 @@ public class RegistroActivity extends ActionBarActivity {
                     txtApellidoPaterno.setText("");
                     txtApellidoMaterno.setText("");
                     txtNombres.requestFocus();
+                    spSexo.setSelection(0);
                 }
             }
         });

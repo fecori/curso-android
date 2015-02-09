@@ -34,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                if (txtEmail.getText().toString().trim().equals("fecori@gmail.com") & txtPassword.getText().toString().trim().equals("1234")) {
+                if (txtEmail.getText().toString().trim().equals("a@b.com") & txtPassword.getText().toString().trim().equals("1234")) {
                     Intent intent = new Intent(MainActivity.this, RegistroActivity.class);
                     startActivity(intent);
                 } else {
