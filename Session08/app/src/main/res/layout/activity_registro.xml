@@ -51,10 +51,18 @@
         android:layout_gravity="bottom">
 
         <Button
+            android:id="@+id/btnSalir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:text="Salir"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/btnListado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
+            android:layout_gravity="left|bottom"
             android:text="Listar"
             android:textAllCaps="false" />
 

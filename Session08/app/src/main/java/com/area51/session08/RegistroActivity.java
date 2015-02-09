@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class RegistroActivity extends ActionBarActivity {
 
     EditText txtNombres, txtApellidoPaterno, txtApellidoMaterno;
-    Button btnRegistro, btnListado;
+    Button btnRegistro, btnListado, btnSalir;
     Spinner spSexo;
 
     @Override
@@ -80,6 +80,14 @@ public class RegistroActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RegistroActivity.this, ListadoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnSalir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegistroActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
