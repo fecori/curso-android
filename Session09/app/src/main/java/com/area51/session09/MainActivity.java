@@ -34,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!txtCorreoElectronico.getText().toString().trim().equals("") && !txtContrasena.getText().toString().trim().equals("")) {
+                if (txtCorreoElectronico.getText().toString().trim().equals("") && txtContrasena.getText().toString().trim().equals("")) {
                     Toast.makeText(getApplicationContext(), "Ingresa todos los datos requeridos", Toast.LENGTH_SHORT).show();
                 } else if (txtCorreoElectronico.getText().toString().trim().equals("fecori@gmail.com") && txtContrasena.getText().toString().trim().equals("123")) {
                     Intent intent = new Intent(MainActivity.this, RegistroActivity.class);

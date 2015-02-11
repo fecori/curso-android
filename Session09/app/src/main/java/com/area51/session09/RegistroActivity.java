@@ -48,7 +48,9 @@ public class RegistroActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                if (!txtNombre.getText().toString().trim().equals("") && !txtApellidoPaterno.getText().toString().trim().equals("") && txtApellidoMaterno.getText().toString().trim().equals("")) {
+                if (!txtNombre.getText().toString().trim().equals("")
+                        && !txtApellidoPaterno.getText().toString().trim().equals("")
+                        && !txtApellidoMaterno.getText().toString().trim().equals("")) {
                     Constant.LISTA_PERSONA.add(new Persona(
                             Constant.LISTA_PERSONA.size(),
                             txtNombre.getText().toString(),
