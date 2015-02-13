@@ -5,6 +5,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -29,6 +30,7 @@ public class RegistroActivity extends ActionBarActivity {
     GridView gvGrilla;
     ArrayList<Imagen> listaImagen;
     GrillaAdapter adapter;
+    String rutaImagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,8 @@ public class RegistroActivity extends ActionBarActivity {
                             txtNombre.getText().toString(),
                             txtApellidoPaterno.getText().toString(),
                             txtApellidoMaterno.getText().toString(),
-                            spSexo.getSelectedItem().toString()
+                            spSexo.getSelectedItem().toString(),
+                            rutaImagen
                     ));
                     txtNombre.setText("");
                     txtApellidoPaterno.setText("");
@@ -90,6 +93,13 @@ public class RegistroActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(RegistroActivity.this, ListadoActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        gvGrilla.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                rutaImagen = listaImagen.get(position).getRutaImage();
             }
         });
 

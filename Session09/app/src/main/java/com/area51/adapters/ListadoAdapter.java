@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.area51.models.Persona;
 import com.area51.session09.R;
 import com.area51.utils.Constant;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
  */
 public class ListadoAdapter extends BaseAdapter {
 
+    protected ImageLoader imageLoader = ImageLoader.getInstance();
     Context context;
     ArrayList<Persona> listaPersona;
 
@@ -44,6 +46,7 @@ public class ListadoAdapter extends BaseAdapter {
 
     static class ViewHolder{
         TextView lblNombre, lblApellidoPaterno, lblApellidoMaterno, lblSexo;
+        ImageView ivImagen;
     }
 
     @Override
@@ -56,6 +59,7 @@ public class ListadoAdapter extends BaseAdapter {
             viewHolder.lblApellidoPaterno = (TextView) convertView.findViewById(R.id.lblApellidoPaterno);
             viewHolder.lblApellidoMaterno = (TextView) convertView.findViewById(R.id.lblApellidoMaterno);
             viewHolder.lblSexo = (TextView) convertView.findViewById(R.id.lblSexo);
+            viewHolder.ivImagen = (ImageView) convertView.findViewById(R.id.ivImagen);
             convertView.setTag(viewHolder);
 
         }
@@ -65,6 +69,7 @@ public class ListadoAdapter extends BaseAdapter {
         holder.lblApellidoPaterno.setText(listaPersona.get(position).getApellidoPaterno());
         holder.lblApellidoMaterno.setText(listaPersona.get(position).getApellidoMaterno());
         holder.lblSexo.setText(listaPersona.get(position).getSexo());
+        imageLoader.displayImage(listaPersona.get(position).getRutaImagen(), holder.ivImagen);
 
         return convertView;
     }

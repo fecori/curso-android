@@ -10,13 +10,15 @@ public class Persona {
     private String ApellidoPaterno;
     private String ApellidoMaterno;
     private String Sexo;
+    private String rutaImagen;
 
-    public Persona(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String sexo) {
+    public Persona(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String sexo, String rutaImagen) {
         this.id = id;
         Nombre = nombre;
         ApellidoPaterno = apellidoPaterno;
         ApellidoMaterno = apellidoMaterno;
         Sexo = sexo;
+        this.rutaImagen = rutaImagen;
     }
 
     public int getId() {
@@ -57,5 +59,13 @@ public class Persona {
 
     public void setSexo(String sexo) {
         Sexo = sexo;
+    }
+
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
     }
 }
