@@ -1,14 +1,18 @@
 package com.area51.session09;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.area51.adapters.GrillaAdapter;
+import com.area51.models.Imagen;
 import com.area51.models.Persona;
 import com.area51.utils.Constant;
 
@@ -22,6 +26,9 @@ public class RegistroActivity extends ActionBarActivity {
     EditText txtNombre, txtApellidoPaterno, txtApellidoMaterno;
     Spinner spSexo;
     Button btnRegistrar, btnListar;
+    GridView gvGrilla;
+    ArrayList<Imagen> listaImagen;
+    GrillaAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +41,21 @@ public class RegistroActivity extends ActionBarActivity {
         spSexo = (Spinner) findViewById(R.id.spSexo);
         btnRegistrar = (Button) findViewById(R.id.btnRegistrar);
         btnListar = (Button) findViewById(R.id.btnListar);
+        gvGrilla = (GridView) findViewById(R.id.gvGrilla);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (listaImagen == null)
+            listaImagen = new ArrayList<Imagen>();
+        for (int i = 100; i < 110; i++) {
+            listaImagen.add(new Imagen(listaImagen.size(), "http://johannfjs.com/android/images/HDPackSuperiorWallpapers424_" + i + ".jpg"));
+        }
+        adapter = new GrillaAdapter(getApplicationContext(), R.layout.grid_item, listaImagen);
+        gvGrilla.setAdapter(adapter);
 
         if (Constant.LISTA_PERSONA == null)
             Constant.LISTA_PERSONA = new ArrayList<Persona>();
