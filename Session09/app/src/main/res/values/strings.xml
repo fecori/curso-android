@@ -13,6 +13,8 @@
     <string name="apellido_materno">Apellido Materno</string>
     <string name="registrar">Registrar</string>
     <string name="listar">Listar</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="cancelar">Cancelar</string>
 
 
 </resources>

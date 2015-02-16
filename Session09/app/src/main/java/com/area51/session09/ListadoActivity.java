@@ -1,9 +1,14 @@
 package com.area51.session09;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,6 +22,7 @@ public class ListadoActivity extends ActionBarActivity {
 
     ListadoAdapter adapter;
     ListView lvListado;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +41,32 @@ public class ListadoActivity extends ActionBarActivity {
         super.onResume();
         lvListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "-> " + position, Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                AlertDialog.Builder dialogo = new AlertDialog.Builder(ListadoActivity.this);
+                dialogo.setTitle("Opciones").setItems(R.array.opciones, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        switch (which) {
+                            case 0:
+                                Intent intent = new Intent(ListadoActivity.this, RegistroActivity.class);
+                                intent.putExtra("KEY", Constant.LISTA_PERSONA.get(position).getId() + 1);
+                                startActivity(intent);
+                                break;
+                            case 1:
+                                Constant.LISTA_PERSONA.remove(position);
+                                adapter.notifyDataSetChanged();
+                                if (Constant.LISTA_PERSONA.size() == 0) {
+                                    Intent intent1 = new Intent(ListadoActivity.this, RegistroActivity.class);
+                                    startActivity(intent1);
+                                }
+                                break;
+                        }
+
+                    }
+                }).show();
+
             }
         });
     }

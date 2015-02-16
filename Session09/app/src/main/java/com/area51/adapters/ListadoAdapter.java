@@ -44,7 +44,7 @@ public class ListadoAdapter extends BaseAdapter {
         return Constant.LISTA_PERSONA.get(position).getId();
     }
 
-    static class ViewHolder{
+    static class ViewHolder {
         TextView lblNombre, lblApellidoPaterno, lblApellidoMaterno, lblSexo;
         ImageView ivImagen;
     }
@@ -68,7 +68,7 @@ public class ListadoAdapter extends BaseAdapter {
         holder.lblNombre.setText(listaPersona.get(position).getNombre());
         holder.lblApellidoPaterno.setText(listaPersona.get(position).getApellidoPaterno());
         holder.lblApellidoMaterno.setText(listaPersona.get(position).getApellidoMaterno());
-        holder.lblSexo.setText(listaPersona.get(position).getSexo());
+        holder.lblSexo.setText(Integer.parseInt(listaPersona.get(position).getSexo()) == 0 ? "Masculino" : "Femenino");
         imageLoader.displayImage(listaPersona.get(position).getRutaImagen(), holder.ivImagen);
 
         return convertView;
