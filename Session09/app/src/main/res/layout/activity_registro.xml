@@ -41,10 +41,10 @@
         android:id="@+id/gvGrilla"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
         android:columnWidth="90dp"
-        android:stretchMode="columnWidth"
         android:numColumns="auto_fit"
-        android:layout_gravity="center_horizontal" />
+        android:stretchMode="columnWidth" />
 
     <Button
         android:id="@+id/btnRegistrar"
@@ -52,6 +52,27 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/registrar" />
+
+    <LinearLayout
+        android:id="@+id/llModificar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btnActualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/actualizar" />
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancelar" />
+
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
