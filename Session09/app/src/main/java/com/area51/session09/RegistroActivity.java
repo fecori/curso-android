@@ -76,11 +76,13 @@ public class RegistroActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-        if (listaImagen == null)
+        if (listaImagen == null) {
             listaImagen = new ArrayList<Imagen>();
-        for (int i = 100; i < 103; i++) {
-            listaImagen.add(new Imagen(listaImagen.size(), "http://johannfjs.com/android/images/HDPackSuperiorWallpapers424_" + i + ".jpg"));
+            for (int i = 100; i < 103; i++) {
+                listaImagen.add(new Imagen(listaImagen.size(), "http://johannfjs.com/android/images/HDPackSuperiorWallpapers424_" + i + ".jpg"));
+            }
         }
+
         adapter = new GrillaAdapter(getApplicationContext(), R.layout.grid_item, listaImagen);
         gvGrilla.setAdapter(adapter);
 
