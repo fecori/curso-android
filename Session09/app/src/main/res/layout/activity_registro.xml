@@ -40,18 +40,11 @@
     <GridView
         android:id="@+id/gvGrilla"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:layout_gravity="center_horizontal"
         android:columnWidth="90dp"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth" />
-
-    <Button
-        android:id="@+id/btnRegistrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/registrar" />
 
     <LinearLayout
         android:id="@+id/llModificar"
@@ -77,6 +70,13 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:text="@string/registrar" />
 
         <Button
             android:id="@+id/btnListar"

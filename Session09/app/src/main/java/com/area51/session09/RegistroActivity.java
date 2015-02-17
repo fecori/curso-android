@@ -1,7 +1,6 @@
 package com.area51.session09;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -27,13 +26,12 @@ public class RegistroActivity extends ActionBarActivity {
 
     EditText txtNombre, txtApellidoPaterno, txtApellidoMaterno;
     Spinner spSexo;
-    Button btnRegistrar, btnListar;
+    Button btnRegistrar, btnListar, btnActualizar, btnCancelar;
     GridView gvGrilla;
     ArrayList<Imagen> listaImagen;
     GrillaAdapter adapter;
     String rutaImagen;
     LinearLayout llModificar;
-    Button btnActualizar, btnCancelar;
     int id_lista = 0;
 
     @Override
@@ -68,7 +66,6 @@ public class RegistroActivity extends ActionBarActivity {
                 llModificar.setVisibility(View.GONE);
             }
         }
-
 
     }
 
