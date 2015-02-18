@@ -1,13 +1,17 @@
 package com.area51.sesion07;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.area51.adapters.GrillaAdapter;
 import com.area51.models.Image;
+import com.area51.utils.Constant;
 
 import java.util.ArrayList;
 
@@ -15,7 +19,6 @@ import java.util.ArrayList;
 public class MainActivity extends ActionBarActivity {
 
     GrillaAdapter adapter;
-    ArrayList<Image> listaImagen;
     GridView gvGrilla;
 
     @Override
@@ -23,17 +26,29 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         gvGrilla = (GridView) findViewById(R.id.gvGrilla);
+
+        gvGrilla.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, ImagenActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("KEY", position);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (listaImagen == null)
-            listaImagen = new ArrayList<Image>();
+        if (Constant.LISTA_IMAGENES == null)
+            Constant.LISTA_IMAGENES = new ArrayList<Image>();
         for (int i = 100; i < 200; i++) {
-            listaImagen.add(new Image(listaImagen.size(), "http://johannfjs.com/android/images/HDPackSuperiorWallpapers424_" + i + ".jpg"));
+            Constant.LISTA_IMAGENES.add(new Image(Constant.LISTA_IMAGENES.size(), "http://johannfjs.com/android/images/HDPackSuperiorWallpapers424_" + i + ".jpg"));
         }
-        adapter = new GrillaAdapter(getApplicationContext(), R.layout.grid_item, listaImagen);
+        adapter = new GrillaAdapter(getApplicationContext(), R.layout.grid_item, Constant.LISTA_IMAGENES);
         gvGrilla.setAdapter(adapter);
     }
 
