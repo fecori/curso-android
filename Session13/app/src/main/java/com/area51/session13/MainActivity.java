@@ -1,5 +1,6 @@
 package com.area51.session13;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.area51.adapter.ListadoAdapter;
 import com.area51.sqlite.ManageOpenHelper;
 import com.area51.utils.Constant;
 
@@ -17,7 +19,7 @@ import com.area51.utils.Constant;
 public class MainActivity extends ActionBarActivity {
 
     EditText txtNombre, txtApellidoPaterno, txtApellidoMaterno;
-    Button btnRegistrar;
+    Button btnRegistrar, btnListado;
 
     ManageOpenHelper dbConexion;
     SQLiteDatabase dbProcesos;
@@ -31,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
         txtApellidoPaterno = (EditText) findViewById(R.id.txtApellidoPaterno);
         txtApellidoMaterno = (EditText) findViewById(R.id.txtApellidoMaterno);
         btnRegistrar = (Button) findViewById(R.id.btnRegistrar);
+        btnListado = (Button) findViewById(R.id.btnListado);
 
     }
 
@@ -64,6 +67,16 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
+
+        btnListado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListadoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override

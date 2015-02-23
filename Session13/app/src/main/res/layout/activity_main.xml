@@ -14,24 +14,30 @@
         android:id="@+id/txtNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/nombre" />
+        android:hint="@string/nombre" />
 
     <EditText
         android:id="@+id/txtApellidoPaterno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/apellido_paterno" />
+        android:hint="@string/apellido_paterno" />
 
     <EditText
         android:id="@+id/txtApellidoMaterno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/apellido_materno" />
+        android:hint="@string/apellido_materno" />
 
     <Button
         android:id="@+id/btnRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/registrar" />
+
+    <Button
+        android:id="@+id/btnListado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/listado"/>
 
 </LinearLayout>
