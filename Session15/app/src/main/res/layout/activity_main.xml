@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/txtNombre"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:hint="@string/nombre"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/txtApellidos"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:hint="@string/apellidos"
+            android:inputType="text" />
+
+    </FrameLayout>
+
+    <Spinner
+        android:id="@+id/spGenero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/spGenero" />
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/registrar" />
+
+    <ListView
+        android:id="@+id/lvLista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
