@@ -1,5 +1,7 @@
 package com.area51.session15;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 import com.area51.adapters.ListaAdapter;
 import com.area51.models.Persona;
 import com.area51.sqlite.ManageOpenHelper;
+import com.area51.sqlite.Querys;
 import com.area51.utils.Constant;
 
 import java.util.ArrayList;
@@ -27,11 +31,12 @@ public class MainActivity extends ActionBarActivity {
     EditText txtNombre, txtApellidos;
     Spinner spGenero;
     Button btnRegistrar;
+    ListView lvLista;
+
+    Querys querys;
 
     ManageOpenHelper dbConexion;
     SQLiteDatabase dbProcesos;
-
-    ListView lvLista;
     ListaAdapter adapter;
     ArrayList<Persona> listaPersona;
 
@@ -52,10 +57,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-        dbConexion = new ManageOpenHelper(MainActivity.this);
-        dbProcesos = dbConexion.getReadableDatabase();
-
-        listarPersonas();
+        querys = new Querys(MainActivity.this);
+        listaPersona = new ArrayList<Persona>();
+        listaPersona = querys.listarTodos();
+        adapter = new ListaAdapter(getApplicationContext(), listaPersona);
+        lvLista.setAdapter(adapter);
 
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,57 +71,43 @@ public class MainActivity extends ActionBarActivity {
                     Toast.makeText(getApplicationContext(), "Campos vacios.", Toast.LENGTH_SHORT).show();
                 } else {
 
-                    String sql = "INSERT INTO " + Constant.TB_PERSONA + "(" +
-                            Constant.C_NOMBRE + "," +
-                            Constant.C_APELLIDOS + "," +
-                            Constant.C_GENERO + ") VALUES('" +
-                            txtNombre.getText().toString() + "','" +
-                            txtApellidos.getText().toString() + "','" +
-                            spGenero.getSelectedItem().toString() + "')";
-
-                    dbProcesos.execSQL(sql);
-                    listarPersonas();
+                    querys.insertarPersona(txtNombre.getText().toString(), txtApellidos.getText().toString(), spGenero.getSelectedItem().toString());
+                    listaPersona = querys.listarTodos();
+                    adapter.notifyDataSetChanged();
 
                     txtNombre.setText("");
                     txtApellidos.setText("");
                     txtNombre.requestFocus();
                     spGenero.setSelection(0);
 
-                    Log.d("TAG", sql);
-
                 }
 
             }
         });
 
-    }
+        lvLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
-    public void listarPersonas(){
-        listaPersona = new ArrayList<Persona>();
+                AlertDialog.Builder dialogo = new AlertDialog.Builder(MainActivity.this);
+                dialogo.setTitle("Opciones").setItems(R.array.opciones, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String sql = null;
+                        switch (which) {
+                            case 0:
+                                break;
+                            case 1:
+                                break;
+                        }
+                        listaPersona = querys.listarTodos();
+                        adapter.notifyDataSetChanged();
+                    }
+                });
 
-        dbConexion = new ManageOpenHelper(MainActivity.this);
-        dbProcesos = dbConexion.getReadableDatabase();
-
-        listaPersona = new ArrayList<Persona>();
-        String sql = "SELECT * FROM " + Constant.TB_PERSONA;
-        Cursor cursor = dbProcesos.rawQuery(sql, null);
-
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                do {
-
-                    listaPersona.add(new Persona(listaPersona.size(),
-                            cursor.getString(cursor.getColumnIndex(Constant.C_NOMBRE)),
-                            cursor.getString(cursor.getColumnIndex(Constant.C_APELLIDOS)),
-                            cursor.getString(cursor.getColumnIndex(Constant.C_GENERO))
-                    ));
-
-                } while (cursor.moveToNext());
             }
-        }
+        });
 
-        adapter = new ListaAdapter(getApplicationContext(), listaPersona);
-        lvLista.setAdapter(adapter);
     }
 
 }
