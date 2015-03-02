@@ -13,6 +13,9 @@ public class ManageAsyntask {
         this.context = context;
     }
 
-
+    public void listar(String url) {
+        ListarTodo obj = new ListarTodo(context);
+        obj.execute(url);
+    }
 
 }

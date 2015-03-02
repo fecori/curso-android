@@ -34,7 +34,7 @@ public class ListarTodo extends AsyncTask<String, Void, String> {
         for (String url : params) {
             resultado = RESTClient.connectAndReturnResponse(url);
         }
-        return null;
+        return resultado;
     }
 
     @Override
