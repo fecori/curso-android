@@ -2,13 +2,9 @@ package com.area51.session15;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -21,7 +17,6 @@ import com.area51.adapters.ListaAdapter;
 import com.area51.models.Persona;
 import com.area51.sqlite.ManageOpenHelper;
 import com.area51.sqlite.Querys;
-import com.area51.utils.Constant;
 
 import java.util.ArrayList;
 
@@ -30,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
 
     EditText txtNombre, txtApellidos;
     Spinner spGenero;
-    Button btnRegistrar;
+    Button btnRegistrar, btnActualizar;
     ListView lvLista;
 
     Querys querys;
@@ -49,6 +44,7 @@ public class MainActivity extends ActionBarActivity {
         txtApellidos = (EditText) findViewById(R.id.txtApellidos);
         spGenero = (Spinner) findViewById(R.id.spGenero);
         btnRegistrar = (Button) findViewById(R.id.btnRegistrar);
+        btnActualizar = (Button) findViewById(R.id.btnActualizar);
         lvLista = (ListView) findViewById(R.id.lvLista);
 
     }
@@ -93,15 +89,20 @@ public class MainActivity extends ActionBarActivity {
                 dialogo.setTitle("Opciones").setItems(R.array.opciones, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String sql = null;
+
+                        Toast.makeText(getApplicationContext(), "Click!", Toast.LENGTH_SHORT).show();
+
                         switch (which) {
                             case 0:
+                                Toast.makeText(getApplicationContext(), "Opcion1!", Toast.LENGTH_SHORT).show();
                                 break;
                             case 1:
+                                Toast.makeText(getApplicationContext(), "Opcion2!", Toast.LENGTH_SHORT).show();
                                 break;
                         }
-                        listaPersona = querys.listarTodos();
-                        adapter.notifyDataSetChanged();
+                        //listaPersona = querys.listarTodos();
+                        //adapter.notifyDataSetChanged();
+
                     }
                 });
 

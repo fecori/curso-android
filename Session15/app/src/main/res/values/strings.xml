@@ -8,5 +8,6 @@
     <string name="nombre">Nombre</string>
     <string name="apellidos">Apellidos</string>
     <string name="registrar">Registrar</string>
+    <string name="actualizar">Actualizar</string>
 
 </resources>
