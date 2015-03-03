@@ -1,14 +1,11 @@
 package pe.friki.session17;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -53,11 +50,16 @@ public class MainActivity extends ActionBarActivity {
 
     public void resultadoListarTodo(String s) {
 
-        Constant.LISTA_PERSONA = new ArrayList<Persona>();
+        if (Constant.LISTA_PERSONA == null)
+            Constant.LISTA_PERSONA = new ArrayList<Persona>();
 
         try {
             JSONArray jsonArray = new JSONArray(s);
             if (jsonArray.length() > 0) {
+
+                Log.d("TAG", jsonArray.toString());
+
+                Constant.LISTA_PERSONA.clear();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     Log.d("TAG", "nombre: " + jsonObject.getString("nombres"));
@@ -74,6 +76,7 @@ public class MainActivity extends ActionBarActivity {
                             jsonObject.getString("apellidoMaterno"),
                             jsonObject.getString("genero")
                     ));
+
                 }
                 adapter = new ListadoPersona(getApplicationContext(), Constant.LISTA_PERSONA);
                 lvUsuarios.setAdapter(adapter);
