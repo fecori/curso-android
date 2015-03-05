@@ -1,28 +1,31 @@
 package com.area51.session18;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.area51.application.ConfigureApplication;
 import com.area51.utils.InitViews;
 
-import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class MainActivity extends ActionBarActivity {
 
     public View root;
     Button btnTraer;
-    TextView txtJson;
+    EditText txtJson;
+    TextView txtbattleTagName, txtbattleTagNumber, txtMonstruosEliminados, txtElitesEliminados, txtParagonLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
                 progressDialog.setCancelable(false);
                 progressDialog.show();
 
-                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest("http://johannfjs.com/android/ws/index.php", new Response.Listener<JSONArray>() {
+                /*JsonArrayRequest jsonArrayRequest = new JsonArrayRequest("https://us.api.battle.net/d3/profile/FECORI-1637/?locale=es_MX&apikey=wmzs37hgs52vfc8kwg56jwumy3sa97kc", new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         txtJson.setText(response.toString());
@@ -53,35 +56,48 @@ public class MainActivity extends ActionBarActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        txtJson.setText("Error ===> " + error.toString());
+                        progressDialog.dismiss();
                     }
-                });
+                });*/
 
-                ConfigureApplication.getInstance().addToRequestQueue(jsonArrayRequest, "json_array_req");
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "https://us.api.battle.net/d3/profile/FECORI-1637/?locale=es_MX&apikey=wmzs37hgs52vfc8kwg56jwumy3sa97kc", null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                txtJson.setText("onResponse ===> " + response.toString());
+
+                                try {
+
+                                    String[] battleTag = response.getString("battleTag").split("#");
+
+                                    txtbattleTagName.setText(battleTag[0]);
+                                    txtbattleTagNumber.setText("#" + battleTag[1]);
+                                    txtMonstruosEliminados.setText(response.getJSONObject("kills").getString("monsters"));
+                                    txtElitesEliminados.setText(response.getJSONObject("kills").getString("elites"));
+                                    txtParagonLevel.setText(response.getString("paragonLevel"));
+
+                                    Toast.makeText(getApplicationContext(), response.getString("progression"), Toast.LENGTH_LONG).show();
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                progressDialog.dismiss();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                txtJson.setText("onErrorResponse ===> " + error.toString());
+                                progressDialog.dismiss();
+                            }
+                        });
+
+                ConfigureApplication.getInstance().addToRequestQueue(jsonObjectRequest, "json_array_req");
 
             }
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

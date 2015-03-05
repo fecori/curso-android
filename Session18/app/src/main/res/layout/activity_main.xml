@@ -11,9 +11,39 @@
         android:layout_height="wrap_content"
         android:text="Traer datos" />
 
-    <TextView
+    <EditText
         android:id="@+id/txtJson"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="200dp" />
+
+    <TextView
+        android:id="@+id/txtbattleTagName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="txtbattleTagName" />
+
+    <TextView
+        android:id="@+id/txtbattleTagNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="txtbattleTagNumber" />
+
+    <TextView
+        android:id="@+id/txtMonstruosEliminados"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="txtMonstruosEliminados" />
+
+    <TextView
+        android:id="@+id/txtElitesEliminados"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="txtElitesEliminados" />
+
+    <TextView
+        android:id="@+id/txtParagonLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="txtParagonLevel" />
 
 </LinearLayout>
